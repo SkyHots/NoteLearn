@@ -1,17 +1,26 @@
 ### 1.git init 
+---初始化空仓库
 
 ### 2.git remote add origin httpsurl
+---本地仓库和远程仓库关联
 
-### 3.git checkout -b dev 
+### 3.git checkout -b dev
+---创建本地分支dev 
 
 ### 4.git pull origin main
+---拉取远程代码
 
 ### 5.git branch --set-upstream-to=origin/main
+---链接本地分支与上游main分支
 
 ### 6.创建文件并提交
+---创建文件写代码/copy过来需要提交的代码
 
 ### 7.git add .
+---添加文件
 
 ### 8.git commit -m '' / git commit   
+---添加注释
 
 ### 9.git push -u origin dev
+---推送代码到github
