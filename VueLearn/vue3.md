@@ -4,9 +4,7 @@ _<script setup>是在单文件组件中使用Composition API的编译时语法�
 2. 能够使用纯 Typescript 声明 props 和抛出事件
 3. 更好的运行时性能 (其模板会被编译成与其同一作用域的渲染函数，没有任何的中间代理)
 4. 更好的 IDE 类型推断性能 (减少语言服务器从代码中抽离类型的工作)
-
 ### 2.基本语法 
-
 ```
 <template>
   <p>{{ name }}</p>
@@ -16,7 +14,6 @@ _<script setup>是在单文件组件中使用Composition API的编译时语法�
     let name = '小明'
 </script>  
 ```
-
 _script里面的代码会被编译成组件setup()函数的内容。这意味着与普通的<script>只在组件被首次引入的时候执行一次不同，<script setup>中的代码会在每次组件实例被创建的时候执行。
 注意：当使用<script setup>的时候，任何在<script setup>声明的顶层的绑定 (包括变量，函数，以及import引入的内容) 都能在模板中直接使用，不需要return
 
@@ -50,7 +47,7 @@ _<script setup>范围里的值也能被直接作为自定义组件的标签名�
 </script>
 ```
 
-3.1动态组件
+#### 3.1动态组件
 由于组件被引用为变量而不是作为字符串键来注册的，在<script setup>中要使用动态组件的时候，就应该使用动态的:is来绑定
 ```
 <template>
@@ -62,15 +59,15 @@ _<script setup>范围里的值也能被直接作为自定义组件的标签名�
     import Bar from './Bar.vue'
 </script>
 ```
-3.2递归组件
+#### 3.2递归组件
 一个单文件组件可以通过它的文件名被其自己所引用。例如：文件名为Foo.vue的组件可以在其模板中用<Foo/>引用它自己。如果名称冲突了，就需要使用别名。
 ```
 import { Foo as FooBarChild } from './components'
 ```
-### 4.自定义指令
+### 4 自定义指令
 全局注册的自定义指令将以符合预期的方式工作，且本地注册的指令可以直接在模板中使用，就像上文所提及的组件一样。但这里有一个需要注意的限制：必须以 vNameOfDirective的形式来命名本地自定义指令，以使得它们可以直接在模板中使用
 
-基本语法
+#### 4.1 基本语法
 ```
 <template>
   <h1 v-my-directive>This is a Heading</h1>
@@ -82,7 +79,9 @@ import { Foo as FooBarChild } from './components'
       }
     }
 </script>
-导入指令
+```
+#### 4.2导入指令
+```
 <script setup>
   // 导入的指令同样能够工作，并且能够通过重命名来使其符合命名规范
   import { myDirective as vMyDirective } from './MyDirective.js'
@@ -97,7 +96,7 @@ import { Foo as FooBarChild } from './components'
     })
 </script>
 ```
-5.1.TypeScript支持
+#### 5.1 TypeScript支持
 仅限类型声明
 
 ```
@@ -156,7 +155,7 @@ const emit = defineEmits<{
 </script>
 ```
 ### 9.与普通的script一起使用
-.<script setup>可以和普通的<script>一起使用。普通的<script>在有这些需要的情况下或许会被使用到。
+_<script setup>可以和普通的<script>一起使用。普通的<script>在有这些需要的情况下或许会被使用到。
 
 无法在<script setup>声明的选项，例如inheritAttrs或通过插件启用的自定义的选
 声明命名导出
