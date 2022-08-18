@@ -57,7 +57,6 @@ _<script setup>范围里的值也能被直接作为自定义组件的标签名�
   <component :is="Foo" />
   <component :is="someCondition ? Foo : Bar" />
 </template>
-
 <script setup>
     import Foo from './Foo.vue'
     import Bar from './Bar.vue'
@@ -76,7 +75,6 @@ import { Foo as FooBarChild } from './components'
 <template>
   <h1 v-my-directive>This is a Heading</h1>
 </template>
-
 <script setup>
     const vMyDirective = {
       beforeMount: (el) => {
@@ -84,9 +82,7 @@ import { Foo as FooBarChild } from './components'
       }
     }
 </script>
-```
 导入指令
-```
 <script setup>
   // 导入的指令同样能够工作，并且能够通过重命名来使其符合命名规范
   import { myDirective as vMyDirective } from './MyDirective.js'
@@ -117,7 +113,6 @@ interface Props {
   msg?: string
   labels?: string[]
 }
-
 const props = withDefaults(defineProps<Props>(), {
   msg: 'hello',
   labels: () => ['one', 'two']
@@ -143,10 +138,8 @@ const emit = defineEmits<{
 ```
 <script setup>
     import { ref } from 'vue'
-    
     const a = 1
-    const b = ref(2)
-    
+    const b = ref(2)    
     defineExpose({
       a,
       b
@@ -157,14 +150,13 @@ const emit = defineEmits<{
 在模板中通过$slots和$attrs来访问它们
 ```
 <script setup>
-    import { useSlots, useAttrs } from 'vue'
-    
+    import { useSlots, useAttrs } from 'vue'   
     const slots = useSlots()
     const attrs = useAttrs()
 </script>
 ```
 ### 9.与普通的script一起使用
-<script setup>可以和普通的<script>一起使用。普通的<script>在有这些需要的情况下或许会被使用到。
+.<script setup>可以和普通的<script>一起使用。普通的<script>在有这些需要的情况下或许会被使用到。
 
 无法在<script setup>声明的选项，例如inheritAttrs或通过插件启用的自定义的选
 声明命名导出
@@ -172,8 +164,7 @@ const emit = defineEmits<{
 ```
 <script>
     // 普通 <script>, 在模块范围下执行(只执行一次)
-    runSideEffectOnce()
-    
+    runSideEffectOnce()   
     // 声明额外的选项
     export default {
       inheritAttrs: false,
