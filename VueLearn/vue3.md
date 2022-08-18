@@ -15,7 +15,7 @@
 <script setup lang="ts">
     let name = '小明'
 </script>  
-```
+
 
 script里面的代码会被编译成组件setup()函数的内容。这意味着与普通的<script>只在组件被首次引入的时候执行一次不同，<script setup>中的代码会在每次组件实例被创建的时候执行。
 注意：当使用<script setup>的时候，任何在<script setup>声明的顶层的绑定 (包括变量，函数，以及import引入的内容) 都能在模板中直接使用，不需要return
@@ -23,7 +23,7 @@ script里面的代码会被编译成组件setup()函数的内容。这意味着�
 响应式
 响应式状态需要使用响应式APIs来创建
 
-```
+```  
 <template>
   <p>{{ name }}</p>
   <p>{{ data.title }}</p>
@@ -37,7 +37,6 @@ script里面的代码会被编译成组件setup()函数的内容。这意味着�
     title: '标题'
   })
 </script>
-```
 
 ### 3.组件使用
 <script setup>范围里的值也能被直接作为自定义组件的标签名使用，不需要写在conmonent对象里
@@ -51,7 +50,7 @@ script里面的代码会被编译成组件setup()函数的内容。这意味着�
 </script>
 ```
 
-#### 3.1动态组件
+3.1动态组件
 由于组件被引用为变量而不是作为字符串键来注册的，在<script setup>中要使用动态组件的时候，就应该使用动态的:is来绑定
 ```
 <template>
@@ -64,7 +63,7 @@ script里面的代码会被编译成组件setup()函数的内容。这意味着�
     import Bar from './Bar.vue'
 </script>
 ```
-#### 3.2递归组件
+3.2递归组件
 一个单文件组件可以通过它的文件名被其自己所引用。例如：文件名为Foo.vue的组件可以在其模板中用<Foo/>引用它自己。如果名称冲突了，就需要使用别名。
 ```
 import { Foo as FooBarChild } from './components'
@@ -102,14 +101,16 @@ import { Foo as FooBarChild } from './components'
     })
 </script>
 ```
-#### 5.1.TypeScript支持
+5.1.TypeScript支持
 仅限类型声明
+
 ```
 const props = defineProps<{
   foo: string
   bar?: number
 }>()
 ```
+
 默认值
 ```
 interface Props {
