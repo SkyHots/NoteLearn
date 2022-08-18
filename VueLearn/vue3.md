@@ -1,11 +1,12 @@
-### 1.前言
-<script setup>是在单文件组件中使用Composition API的编译时语法糖。相比于普通的<script>语法，它具有更多优势:  
+### 1.前言  
+
+.<script setup/>是在单文件组件中使用Composition API的编译时语法糖。相比于普通的<script>语法，它具有更多优势:
 1.更少的样板内容，更简洁的代码
 2.能够使用纯 Typescript 声明 props 和抛出事件
 3.更好的运行时性能 (其模板会被编译成与其同一作用域的渲染函数，没有任何的中间代理)
 4.更好的 IDE 类型推断性能 (减少语言服务器从代码中抽离类型的工作)
 
-### 2.基本语法 
+### 2.基本语法
 
 ```
 <template>
@@ -37,9 +38,11 @@ script里面的代码会被编译成组件setup()函数的内容。这意味着�
     title: '标题'
   })
 </script>
+```
 
 ### 3.组件使用
-<script setup>范围里的值也能被直接作为自定义组件的标签名使用，不需要写在conmonent对象里
+
+.<script setup>范围里的值也能被直接作为自定义组件的标签名使用，不需要写在conmonent对象里
 ```
 <template>
   <MyComponent />
@@ -57,7 +60,6 @@ script里面的代码会被编译成组件setup()函数的内容。这意味着�
   <component :is="Foo" />
   <component :is="someCondition ? Foo : Bar" />
 </template>
-
 <script setup>
     import Foo from './Foo.vue'
     import Bar from './Bar.vue'
@@ -76,7 +78,6 @@ import { Foo as FooBarChild } from './components'
 <template>
   <h1 v-my-directive>This is a Heading</h1>
 </template>
-
 <script setup>
     const vMyDirective = {
       beforeMount: (el) => {
@@ -84,9 +85,7 @@ import { Foo as FooBarChild } from './components'
       }
     }
 </script>
-```
 导入指令
-```
 <script setup>
   // 导入的指令同样能够工作，并且能够通过重命名来使其符合命名规范
   import { myDirective as vMyDirective } from './MyDirective.js'
@@ -117,7 +116,6 @@ interface Props {
   msg?: string
   labels?: string[]
 }
-
 const props = withDefaults(defineProps<Props>(), {
   msg: 'hello',
   labels: () => ['one', 'two']
@@ -143,10 +141,8 @@ const emit = defineEmits<{
 ```
 <script setup>
     import { ref } from 'vue'
-    
     const a = 1
-    const b = ref(2)
-    
+    const b = ref(2)    
     defineExpose({
       a,
       b
@@ -157,14 +153,13 @@ const emit = defineEmits<{
 在模板中通过$slots和$attrs来访问它们
 ```
 <script setup>
-    import { useSlots, useAttrs } from 'vue'
-    
+    import { useSlots, useAttrs } from 'vue'   
     const slots = useSlots()
     const attrs = useAttrs()
 </script>
 ```
 ### 9.与普通的script一起使用
-<script setup>可以和普通的<script>一起使用。普通的<script>在有这些需要的情况下或许会被使用到。
+.<script setup>可以和普通的<script>一起使用。普通的<script>在有这些需要的情况下或许会被使用到。
 
 无法在<script setup>声明的选项，例如inheritAttrs或通过插件启用的自定义的选
 声明命名导出
@@ -172,8 +167,7 @@ const emit = defineEmits<{
 ```
 <script>
     // 普通 <script>, 在模块范围下执行(只执行一次)
-    runSideEffectOnce()
-    
+    runSideEffectOnce()   
     // 声明额外的选项
     export default {
       inheritAttrs: false,
